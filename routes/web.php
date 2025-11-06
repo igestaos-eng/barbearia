@@ -42,12 +42,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'can:access-admin'])->group(function () {
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-        
+
         // Resource routes
         Route::resource('appointments', \App\Http\Controllers\Admin\AppointmentAdminController::class);
         Route::resource('barbers', \App\Http\Controllers\Admin\BarberAdminController::class);
         Route::resource('services', \App\Http\Controllers\Admin\ServiceAdminController::class);
-        
+
         // User management routes (only for superadmin)
         Route::middleware('can:manage-admins')->group(function () {
             Route::resource('users', \App\Http\Controllers\Admin\UserController::class);

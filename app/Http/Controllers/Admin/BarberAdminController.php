@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateBarberRequest;
 use App\Models\Barber;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class BarberAdminController extends Controller

@@ -18,7 +18,7 @@ class BarberCrudTest extends TestCase
     public function test_admin_can_view_barbers_list(): void
     {
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
-        
+
         $barberUser = User::factory()->create(['role' => UserRole::BARBER]);
         $barber = Barber::factory()->create(['user_id' => $barberUser->id]);
 
@@ -36,7 +36,7 @@ class BarberCrudTest extends TestCase
     public function test_admin_can_view_create_barber_form(): void
     {
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->get(route('admin.barbers.create'));
@@ -52,7 +52,7 @@ class BarberCrudTest extends TestCase
     {
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
         $barberUser = User::factory()->create(['role' => UserRole::BARBER]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->post(route('admin.barbers.store'), [
@@ -65,7 +65,7 @@ class BarberCrudTest extends TestCase
 
         $response->assertRedirect(route('admin.barbers.index'));
         $response->assertSessionHas('success');
-        
+
         $this->assertDatabaseHas('barbers', [
             'user_id' => $barberUser->id,
             'specialization' => 'Classic Cuts',
@@ -80,7 +80,7 @@ class BarberCrudTest extends TestCase
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
         $barberUser = User::factory()->create(['role' => UserRole::BARBER]);
         $barber = Barber::factory()->create(['user_id' => $barberUser->id]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->get(route('admin.barbers.edit', $barber));
@@ -101,7 +101,7 @@ class BarberCrudTest extends TestCase
             'user_id' => $barberUser->id,
             'specialization' => 'Old Specialization',
         ]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->put(route('admin.barbers.update', $barber), [
@@ -113,7 +113,7 @@ class BarberCrudTest extends TestCase
 
         $response->assertRedirect(route('admin.barbers.index'));
         $response->assertSessionHas('success');
-        
+
         $this->assertDatabaseHas('barbers', [
             'id' => $barber->id,
             'specialization' => 'New Specialization',
@@ -129,14 +129,14 @@ class BarberCrudTest extends TestCase
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
         $barberUser = User::factory()->create(['role' => UserRole::BARBER]);
         $barber = Barber::factory()->create(['user_id' => $barberUser->id]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->delete(route('admin.barbers.destroy', $barber));
 
         $response->assertRedirect(route('admin.barbers.index'));
         $response->assertSessionHas('success');
-        
+
         $this->assertSoftDeleted('barbers', [
             'id' => $barber->id,
         ]);
@@ -148,7 +148,7 @@ class BarberCrudTest extends TestCase
     public function test_barber_creation_requires_valid_user_id(): void
     {
         $admin = User::factory()->create(['role' => UserRole::ADMIN]);
-        
+
         $this->actingAs($admin);
 
         $response = $this->post(route('admin.barbers.store'), [
@@ -166,7 +166,7 @@ class BarberCrudTest extends TestCase
     {
         $customer = User::factory()->create(['role' => UserRole::CUSTOMER]);
         $barberUser = User::factory()->create(['role' => UserRole::BARBER]);
-        
+
         $this->actingAs($customer);
 
         $response = $this->post(route('admin.barbers.store'), [

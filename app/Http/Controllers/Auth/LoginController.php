@@ -40,8 +40,9 @@ class LoginController extends Controller
             RateLimiter::clear($this->throttleKey($request));
 
             // Ensure user is admin or superadmin
-            if (!Auth::user()->isAdmin()) {
+            if (! Auth::user()->isAdmin()) {
                 Auth::logout();
+
                 return back()->withErrors([
                     'email' => 'Access denied. Admin credentials required.',
                 ]);

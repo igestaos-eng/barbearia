@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Policies\AdminPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register the gate for admin access
+        Gate::define('access-admin', [AdminPolicy::class, 'accessAdmin']);
+        Gate::define('manage-admins', [AdminPolicy::class, 'manageAdmins']);
     }
 }

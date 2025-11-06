@@ -10,8 +10,7 @@ class AvailabilityData
         public readonly int $barberId,
         public readonly Carbon $date,
         public readonly array $availableSlots,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $data): self
     {

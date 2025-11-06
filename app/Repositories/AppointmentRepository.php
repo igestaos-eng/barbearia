@@ -11,8 +11,7 @@ class AppointmentRepository
 {
     public function __construct(
         private readonly Appointment $model
-    ) {
-    }
+    ) {}
 
     public function create(array $data): Appointment
     {
@@ -76,7 +75,7 @@ class AppointmentRepository
             ->whereIn('status', [AppointmentStatus::PENDING, AppointmentStatus::CONFIRMED, AppointmentStatus::IN_PROGRESS])
             ->where(function ($query) use ($scheduledAt, $endTime) {
                 $query->whereBetween('scheduled_at', [$scheduledAt, $endTime])
-                    ->orWhere(function ($q) use ($scheduledAt, $endTime) {
+                    ->orWhere(function ($q) use ($scheduledAt) {
                         $q->where('scheduled_at', '<=', $scheduledAt)
                             ->whereRaw('DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?', [$scheduledAt]);
                     });

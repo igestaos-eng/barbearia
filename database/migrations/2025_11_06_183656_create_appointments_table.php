@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamp('reminder_sent_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            
+
             $table->index(['barber_id', 'scheduled_at']);
             $table->index(['customer_id', 'scheduled_at']);
             $table->index('status');

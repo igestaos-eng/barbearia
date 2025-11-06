@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->boolean('is_booked')->default(false);
             $table->timestamps();
-            
+
             $table->unique(['barber_id', 'date', 'start_time']);
             $table->index(['barber_id', 'date', 'is_available']);
         });

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->boolean('is_working_day')->default(true);
             $table->timestamps();
-            
+
             $table->unique(['barber_id', 'day_of_week']);
         });
     }

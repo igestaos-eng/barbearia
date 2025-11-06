@@ -33,4 +33,3 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:access-admin'])
     Route::resource('barbers', \App\Http\Controllers\Admin\BarberAdminController::class);
     Route::resource('services', \App\Http\Controllers\Admin\ServiceAdminController::class);
 });
-

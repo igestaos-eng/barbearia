@@ -14,8 +14,7 @@ class AppointmentData
         public readonly int $durationMinutes,
         public readonly float $price,
         public readonly ?string $notes = null,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $data): self
     {

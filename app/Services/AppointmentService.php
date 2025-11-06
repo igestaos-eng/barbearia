@@ -13,8 +13,7 @@ class AppointmentService
     public function __construct(
         private readonly AppointmentRepository $repository,
         private readonly NotificationService $notificationService
-    ) {
-    }
+    ) {}
 
     public function createAppointment(AppointmentData $data): Appointment
     {
@@ -52,7 +51,7 @@ class AppointmentService
         return $appointment;
     }
 
-    public function cancelAppointment(int $appointmentId, string $reason = null): Appointment
+    public function cancelAppointment(int $appointmentId, ?string $reason = null): Appointment
     {
         $appointment = $this->repository->findById($appointmentId);
 

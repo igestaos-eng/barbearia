@@ -1,25 +1,50 @@
-# Laravel .gitignore
-
-# Laravel dependencies
-/vendor/
-/node_modules/
-
-# Environment variables
-.env
-
-# IDE and editor configurations
-/.idea/
-/.vscode/
-
-# Cache and logs
+# Laravel specific
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
 /storage/*.key
-/storage/*.log
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+/dist
+/build
+
+# Logs
+*.log
+storage/logs/*.log
+
+# Testing
+.phpunit.cache
+coverage/
 
 # Backup files
 *.bak
 *.tmp
-*.swp
-
-# Other development artifacts
-.DS_Store
-Thumbs.db
